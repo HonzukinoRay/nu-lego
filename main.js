@@ -45,7 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Dynamic Gallery Loading
     const galleryGrid = document.querySelector('.gallery-grid');
     
-    const renderGallery = (works) => {
+    // Googleドライブの画像を軽量化する関数
+    const getThumbnailUrl = (url) => {
+        if (url && url.includes('lh3.googleusercontent.com')) {
+            const baseUrl = url.split('=')[0];
+            return `${baseUrl}=s600`; // 600pxサイズに縮小
+        }
+        return url;
+    };
+    
+    const renderGallery = (works, limit = null) => {
         if (!galleryGrid) return;
         galleryGrid.innerHTML = '';
         
@@ -54,12 +63,17 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        works.forEach((work, index) => {
+        // 表示件数の制限（トップページ用）
+        const displayWorks = limit ? works.slice(0, limit) : works;
+
+        displayWorks.forEach((work, index) => {
             const delay = (index % 3) * 0.1;
+            const thumbnailUrl = getThumbnailUrl(work.imageUrl);
+            
             const itemHtml = `
                 <div class="gallery-item fade-in-up" data-category="${work.category}" style="transition-delay: ${delay}s">
                     <div class="gallery-img-wrapper">
-                        <img src="${work.imageUrl}" alt="${work.title}" onerror="this.src='https://via.placeholder.com/600x400/f5f5f7/86868b?text=No+Image'">
+                        <img src="${thumbnailUrl}" alt="${work.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400/f5f5f7/86868b?text=No+Image'">
                     </div>
                     <div class="gallery-info">
                         <h3>${work.title}</h3>
@@ -73,21 +87,22 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryGrid.insertAdjacentHTML('beforeend', itemHtml);
         });
         
-        // 追加された動的要素に対してもObserverを適用
         initObserver();
     };
 
     const loadGallery = async () => {
+        if (!galleryGrid) return;
         try {
-            // ローカルファイルをブラウザで直接開くと、セキュリティ(CORS)によりfetchがブロックされる場合があります
             const response = await fetch('data/gallery.json');
             if (!response.ok) throw new Error('Network response was not ok');
             const works = await response.json();
-            renderGallery(works);
+            
+            // ページの種類によって表示件数を変える
+            const isHomePage = document.body.classList.contains('home-page');
+            renderGallery(works, isHomePage ? 4 : null); 
         } catch (error) {
             console.error('Gallery loading error:', error);
-            // fetchが失敗した場合（ローカル実行時など）のフォールバック
-            galleryGrid.innerHTML = '<div class="loading-spinner">ギャラリーを読み込めませんでした。<br><small>サーバー上で実行するか、VSCodeのLive Serverなどをご利用ください。</small></div>';
+            galleryGrid.innerHTML = '<div class="loading-spinner">ギャラリーを読み込めませんでした。</div>';
         }
     };
 
