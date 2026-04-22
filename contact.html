@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ - 名大レゴ部</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="contact-page">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="lego-stack">
+                <div class="brick red"></div>
+                <div class="brick blue"></div>
+                <div class="brick yellow"></div>
+                <div class="brick green"></div>
+            </div>
+            <p>Loading form...</p>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                名大レゴ部
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">ホーム</a>
+                <a href="about.html">レゴ部について</a>
+                <a href="gallery.html">作品集</a>
+                <a href="recruit.html">部員募集</a>
+                <a href="contact.html" class="btn-primary">お問い合わせ</a>
+            </nav>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section" style="padding-top: 10rem;">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h1>お問い合わせ</h1>
+                    <p>Contact Us</p>
+                </div>
+
+                <div class="contact-wrapper wood-border fade-in-up" style="max-width: 900px; margin: 0 auto; grid-template-columns: 1fr;">
+                    <div class="contact-info" style="text-align: center; margin-bottom: 2rem;">
+                        <p style="font-size: 1.1rem; color: var(--color-text-light);">
+                            制作のご依頼、出展のご相談、入部希望など<br>
+                            以下のフォームよりお気軽にお問い合わせください。
+                        </p>
+                    </div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name">お名前 / 団体名</label>
+                            <input type="text" id="name" placeholder="名古屋 太郎" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">メールアドレス</label>
+                            <input type="email" id="email" placeholder="example@nu-lego.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type">お問い合わせ種別</label>
+                            <select id="type">
+                                <option value="production">制作依頼</option>
+                                <option value="exhibition">出展依頼</option>
+                                <option value="joining">入部希望</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">内容</label>
+                            <textarea id="message" rows="6" placeholder="詳細をご記入ください" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary w-full" style="height: 60px; font-size: 1.1rem;">送信する</button>
+                        <p style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-light);">
+                            ※送信内容は部員が確認次第、折り返しご連絡いたします。
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>名大レゴ部</h3>
+                <p>Nagoya University LEGO Club</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 名大レゴ部. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <style>
+        h1 { font-size: 3.5rem; letter-spacing: -0.04em; margin-bottom: 0.5rem; }
+        .contact-wrapper { padding: 3rem !important; }
+    </style>
+</body>
+</html>

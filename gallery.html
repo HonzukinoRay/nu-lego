@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品ギャラリー - 名大レゴ部</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="gallery-page">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="lego-stack">
+                <div class="brick red"></div>
+                <div class="brick blue"></div>
+                <div class="brick yellow"></div>
+                <div class="brick green"></div>
+            </div>
+            <p>Building gallery...</p>
+        </div>
+    </div>
+
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"></span>
+                名大レゴ部
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">ホーム</a>
+                <a href="about.html">レゴ部について</a>
+                <a href="gallery.html" class="active-nav">作品集</a>
+                <a href="recruit.html">部員募集</a>
+                <a href="contact.html" class="btn-primary">お問い合わせ</a>
+            </nav>
+            <div class="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section bg-light" style="padding-top: 10rem;">
+            <div class="container">
+                <div class="section-header fade-in-up">
+                    <h1>作品ギャラリー</h1>
+                    <p>Works Gallery</p>
+                </div>
+                
+                <div class="gallery-filters fade-in-up">
+                    <button class="filter-btn active" data-filter="all">すべて</button>
+                    <button class="filter-btn" data-filter="architecture">建築</button>
+                    <button class="filter-btn" data-filter="character">キャラクター</button>
+                    <button class="filter-btn" data-filter="mechanism">テクニック</button>
+                    <button class="filter-btn" data-filter="others">その他</button>
+                </div>
+
+                <div class="gallery-grid">
+                    <!-- JavaScriptにより動的に生成されます -->
+                    <div class="loading-spinner">読み込み中...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h3>名大レゴ部</h3>
+                <p>Nagoya University LEGO Club</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 名大レゴ部. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <style>
+        .active-nav { color: var(--color-text) !important; font-weight: 700 !important; }
+        h1 { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
+    </style>
+</body>
+</html>

@@ -90,15 +90,23 @@
 .brick::before { left: 8px; }
 .brick::after { right: 8px; }
 
-.brick.red { background-color: var(--color-lego-red); animation-delay: 0.2s; }
-.brick.blue { background-color: var(--color-lego-blue); animation-delay: 0.5s; }
-.brick.yellow { background-color: var(--color-lego-yellow); animation-delay: 0.8s; }
-.brick.green { background-color: var(--color-lego-green); animation-delay: 1.1s; }
+.brick.red { background-color: var(--color-lego-red); animation: drop-stack 2s infinite; animation-delay: 0.1s; }
+.brick.blue { background-color: var(--color-lego-blue); animation: drop-stack 2s infinite; animation-delay: 0.3s; }
+.brick.yellow { background-color: var(--color-lego-yellow); animation: drop-stack 2s infinite; animation-delay: 0.5s; }
+.brick.green { background-color: var(--color-lego-green); animation: drop-stack 2s infinite; animation-delay: 0.7s; }
 
 @keyframes drop-stack {
-    to {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    30%, 70% {
         opacity: 1;
         transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
     }
 }
 

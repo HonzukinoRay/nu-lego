@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>名大レゴ部 - Nagoya University LEGO User Group</title>
+    <title>名大レゴ部 - Nagoya University LEGO Club</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home-page">
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader-content">
@@ -30,11 +30,11 @@
                 名大レゴ部
             </a>
             <nav class="nav-links">
-                <a href="#about">レゴ部について</a>
-                <a href="#gallery">作品ギャラリー</a>
-                <a href="#columns">活動報告</a>
-                <a href="#sns">SNS</a>
-                <a href="#contact" class="btn-primary">お問い合わせ</a>
+                <a href="index.html">ホーム</a>
+                <a href="about.html">レゴ部について</a>
+                <a href="gallery.html">作品集</a>
+                <a href="recruit.html">部員募集</a>
+                <a href="contact.html" class="btn-primary">お問い合わせ</a>
             </nav>
             <div class="mobile-menu-btn">
                 <span></span>
@@ -49,10 +49,10 @@
             <div class="hero-bg" style="background-image: url('file:///C:/Users/orang/.gemini/antigravity/brain/1fb81182-5890-4f90-849b-30c6b35bebcd/lego_club_hero_1776748830832.png');"></div>
             <div class="hero-content container fade-in-up">
                 <h1 class="hero-title">想像を、創造に。</h1>
-                <p class="hero-subtitle">Nagoya University LEGO User Group<br>私たちはレゴブロックを通して、新しい表現を探求します。</p>
+                <p class="hero-subtitle">Nagoya University LEGO Club<br>私たちはレゴブロックを通して、新しい表現を探求します。</p>
                 <div class="hero-actions">
-                    <a href="#gallery" class="btn-primary">作品を見る</a>
-                    <a href="#about" class="btn-secondary">部について</a>
+                    <a href="gallery.html" class="btn-primary">作品を見る</a>
+                    <a href="about.html" class="btn-secondary">部について</a>
                 </div>
             </div>
         </section>
@@ -92,20 +92,17 @@
         <section id="gallery" class="section bg-light">
             <div class="container">
                 <div class="section-header fade-in-up">
-                    <h2>作品ギャラリー</h2>
-                    <p>Works Gallery</p>
+                    <h2>ピックアップ作品</h2>
+                    <p>Featured Works</p>
                 </div>
                 
-                <div class="gallery-filters fade-in-up">
-                    <button class="filter-btn active" data-filter="all">すべて</button>
-                    <button class="filter-btn" data-filter="architecture">建築</button>
-                    <button class="filter-btn" data-filter="character">キャラクター</button>
-                    <button class="filter-btn" data-filter="mechanism">機構</button>
+                <div class="gallery-grid">
+                    <!-- JavaScriptにより上位4件が表示されます -->
+                    <div class="loading-spinner">読み込み中...</div>
                 </div>
 
-                <div class="gallery-grid">
-                    <!-- JavaScriptによりdata/gallery.jsonから動的に生成されます -->
-                    <div class="loading-spinner">読み込み中...</div>
+                <div class="text-center mt-4 fade-in-up">
+                    <a href="gallery.html" class="btn-secondary">すべての作品を見る →</a>
                 </div>
             </div>
         </section>
@@ -206,7 +203,7 @@
         <div class="container footer-content">
             <div class="footer-brand">
                 <h3>名大レゴ部</h3>
-                <p>Nagoya University LEGO User Group</p>
+                <p>Nagoya University LEGO Club</p>
             </div>
             <div class="footer-links">
                 <a href="#">プライバシーポリシー</a>
