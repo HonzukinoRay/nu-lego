@@ -210,6 +210,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadColumns();
 
+    // --- Dynamic Instagram Embed Loading ---
+    const instagramGrid = document.querySelector('.instagram-embed-grid');
+
+    const loadInstagramEmbeds = async () => {
+        if (!instagramGrid) return;
+        try {
+            const response = await fetch('data/instagram.json');
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+            
+            instagramGrid.innerHTML = '';
+            if (!data || data.length === 0) {
+                instagramGrid.innerHTML = '<div class="loading-spinner">Instagramの投稿がありません。</div>';
+                return;
+            }
+
+            // 最新の3件だけ表示
+            const displayData = data.slice(0, 3);
+            displayData.forEach((item, index) => {
+                const delay = index * 0.1;
+                const wrapper = document.createElement('div');
+                wrapper.className = 'instagram-embed-wrapper fade-in-up';
+                wrapper.style.transitionDelay = `${delay}s`;
+                wrapper.innerHTML = item.embedCode;
+                instagramGrid.appendChild(wrapper);
+            });
+
+            // Instagram埋め込みスクリプトの再実行（必要な場合）
+            if (window.instgrm) {
+                window.instgrm.Embeds.process();
+            } else {
+                const script = document.createElement('script');
+                script.src = "//www.instagram.com/embed.js";
+                script.async = true;
+                document.body.appendChild(script);
+            }
+
+            initObserver();
+        } catch (error) {
+            console.error('Instagram loading error:', error);
+            instagramGrid.innerHTML = '<div class="loading-spinner">Instagramの投稿を読み込めませんでした。</div>';
+        }
+    };
+
+    loadInstagramEmbeds();
+
     // 3. Gallery Filtering
     const filterBtns = document.querySelectorAll('.filter-btn');
 

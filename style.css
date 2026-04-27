@@ -604,6 +604,25 @@ a {
     gap: 2rem;
 }
 
+.instagram-embed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.instagram-embed-grid .instagram-embed-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-fast);
+}
+
+.instagram-embed-grid .instagram-embed-wrapper:hover {
+    box-shadow: var(--shadow-md);
+}
+
 .sns-widget {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.1);
