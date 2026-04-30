@@ -300,20 +300,40 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 4. Contact Form Mock Submit (Discord Integration mock)
+    // 4. Contact Form Submit (GAS Web App Integration)
     const form = document.querySelector('.contact-form');
     if (form) {
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = form.querySelector('button[type="submit"]');
             const originalText = btn.textContent;
             
             btn.textContent = '送信中...';
             btn.style.opacity = '0.7';
+            btn.disabled = true;
 
-            // Simulate API call to Make/Discord
-            setTimeout(() => {
-                btn.textContent = '送信完了 (Discordへ通知しました)';
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                type: document.getElementById('type').value,
+                message: document.getElementById('message').value
+            };
+
+            // TODO: Replace with the deployed GAS Web App URL
+            const GAS_WEB_APP_URL = 'YOUR_GAS_WEB_APP_URL_HERE';
+
+            try {
+                const response = await fetch(GAS_WEB_APP_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(formData),
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded' // GAS requires this for CORS sometimes, or just text/plain. Actually GAS handles text/plain well for CORS.
+                    }
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok');
+
+                btn.textContent = '送信完了 (自動通知しました)';
                 btn.style.backgroundColor = '#28a745'; // Success green
                 btn.style.color = '#fff';
                 btn.style.opacity = '1';
@@ -322,8 +342,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     btn.textContent = originalText;
                     btn.style.backgroundColor = '';
+                    btn.disabled = false;
                 }, 3000);
-            }, 1000);
+
+            } catch (error) {
+                console.error('Submit error:', error);
+                btn.textContent = 'エラーが発生しました';
+                btn.style.backgroundColor = '#dc3545'; // Error red
+                btn.style.color = '#fff';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '';
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                }, 3000);
+            }
         });
     }
 
